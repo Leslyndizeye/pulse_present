@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        html, body {
+            display: grid;
+            height: 100%;
+            width: 100%;
+            place-items: center;
+            background: -webkit-linear-gradient(left, #003366, #004080, #0059b3, #0073e6);
+            overflow: hidden; /* Prevent scroll during loading */
+        }
+        ::selection {
+            background: #1a75ff;
+            color: #fff;
+        }
+        .wrapper {
+            overflow: hidden;
+            max-width: 390px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+            display: none; /* Initially hide the wrapper */
+        }
+        .title {
+            font-size: 35px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .form-container {
+            width: 100%;
+            overflow: hidden;
+        }
+        .form-inner form {
+            transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        .form-inner form .field {
+            height: 50px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .form-inner form .field input {
+            height: 100%;
+            width: 100%;
+            outline: none;
+            padding-left: 15px;
+            border-radius: 15px;
+            border: 1px solid lightgrey;
+            border-bottom-width: 2px;
+            font-size: 17px;
+            transition: all 0.3s ease;
+        }
+        .form-inner form .field input:focus {
+            border-color: #1a75ff;
+        }
+        .form-inner form .field input::placeholder {
+            color: #999;
+            transition: all 0.3s ease;
+        }
+        form .field input:focus::placeholder {
+            color: #1a75ff;
+        }
+        .form-inner form .signup-link {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .form-inner form .signup-link a {
+            color: #1a75ff;
+            text-decoration: none;
+        }
+        .form-inner form .signup-link a:hover {
+            text-decoration: underline;
+        }
+        form .btn {
+            height: 50px;
+            width: 100%;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        form .btn .btn-layer {
+            height: 100%;
+            width: 300%;
+            position: absolute;
+            left: -100%;
+            background: -webkit-linear-gradient(right, #003366, #004080, #0059b3, #0073e6);
+            border-radius: 15px;
+            transition: all 0.4s ease;
+        }
+        form .btn:hover .btn-layer {
+            left: 0;
+        }
+        form .btn input[type="submit"] {
+            height: 100%;
+            width: 100%;
+            z-index: 1;
+            position: relative;
+            background: none;
+            border: none;
+            color: #fff;
+            padding-left: 0;
+            border-radius: 15px;
+            font-size: 20px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        /* Loader CSS */
+        .loader {
+            width: 85px;
+            height: 35px;
+            --g1: conic-gradient(from 90deg at 3px 3px, #0000 90deg, #fff 0);
+            --g2: conic-gradient(from -90deg at 22px 22px, #0000 90deg, #fff 0);
+            background: var(--g1), var(--g1), var(--g1), var(--g2), var(--g2), var(--g2);
+            background-size: 25px 25px;
+            background-repeat: no-repeat;
+            animation: l6 1s infinite alternate;
+            position: absolute;
+            top: 36%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10; /* Ensure loader is on top */
+        }
+        @keyframes l6 {
+            0% { background-position: 0 50%, 50% 50%, 100% 50% }
+            20% { background-position: 0 0, 50% 50%, 100% 50% }
+            40% { background-position: 0 100%, 50% 0, 100% 50% }
+            60% { background-position: 0 50%, 50% 100%, 100% 0 }
+            80% { background-position: 0 50%, 50% 50%, 100% 100% }
+            100% { background-position: 0 50%, 50% 50%, 100% 50% }
+        }
+        /* Pulse Text */
+        .pulse-text {
+            font-size: 50px;
+            font-weight: bold;
+            color: #fff;
+            text-transform: uppercase;
+            position: absolute;
+            top: 30%; /* Adjusted to move slightly up */
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10; /* Ensure text is on top */
+        }
+    </style>
+</head>
+<body>
+    <div class="loader" id="loader"></div>
+    <div class="pulse-text" id="pulse-text">PULSE</div>
+    <div class="wrapper">
+        <div class="title">Signup Form</div>
+        <div class="form-container">
+            <div class="form-inner">
+                <form action="#" class="signup">
+                    <div class="field">
+                        <input type="text" placeholder="Email Address" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" placeholder="Password" required>
+                    </div>
+                    <div class="field">
+                        <input type="password" placeholder="Confirm Password" required>
+                    </div>
+                    <div class="field btn">
+                        <div class="btn-layer"></div>
+                        <input type="submit" value="Signup">
+                    </div>
+                    <div class="signup-link">
+                        Already a member? <a href="login.html">Login</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            // Show the loader and pulse text initially
+            document.getElementById('loader').style.display = 'block';
+            document.getElementById('pulse-text').style.display = 'block';
+            
+            // Set a timeout to hide the loader and pulse text after 4 seconds
+            setTimeout(function() {
+                document.getElementById('loader').style.display = 'none';
+                document.getElementById('pulse-text').style.display = 'none';
+                document.querySelector('.wrapper').style.display = 'block';
+            }, 3000); // 4000 milliseconds = 4 seconds
+        });
+
+        document.querySelector('.signup').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+    
+            // Perform signup actions here, such as AJAX request
+    
+            // Redirect or take action after successful signup
+            window.location.href = 'index.html'; // Redirect to index.html upon successful signup
+        });
+    </script>
+</body>
+</html>
